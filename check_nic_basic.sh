@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 # check_nic_basic plugin for Nagios
 # Written by Udo Seidel
 #
@@ -50,11 +50,11 @@ if [ "$?" -ne 0 ]; then
 else
 	ifconfig $1 | grep -v inet6 | grep inet > /dev/null 2>&1
 	if [ "$?" -ne 0 ]; then
-		echo "WARNING - Interface $1 has no IP address"
+		echo "WARNING - Interface $1 has no valid IP address"
 		EXITSTATUS=$STATE_WARNING
 		exit $EXITSTATUS
 	else
-		echo "OK - Interface $1 is avaiable and has an IP address"
+		echo "OK - Interface $1 is avaiable and has a valid IP address"
 		EXITSTATUS=$STATE_OK
 		exit $EXITSTATUS
 	fi
