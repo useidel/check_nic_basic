@@ -8,6 +8,7 @@
 #
 # 
 MYNIC=""
+MYIP=""
 
 
 # Nagios return codes
@@ -48,13 +49,20 @@ if [ "$?" -ne 0 ]; then
         EXITSTATUS=$STATE_CRITICAL
         exit $EXITSTATUS
 else
+	ifconfig $1 | grep UP > /dev/null 2>&1
+	if [ "$?" -ne 0 ]; then
+		echo "CRITICAL - Interface $1 is not up"
+		EXITSTATUS=$STATE_CRITICAL
+		exit $EXITSTATUS
+	fi
 	ifconfig $1 | grep -v inet6 | grep inet > /dev/null 2>&1
 	if [ "$?" -ne 0 ]; then
 		echo "WARNING - Interface $1 has no valid IP address"
 		EXITSTATUS=$STATE_WARNING
 		exit $EXITSTATUS
 	else
-		echo "OK - Interface $1 is avaiable and has a valid IP address"
+		MYIP=`ifconfig $1 | grep -v inet6 | grep inet | awk '{print $2}'`
+		echo "OK - Interface $1 is avaiable and has IP address $MYIP"
 		EXITSTATUS=$STATE_OK
 		exit $EXITSTATUS
 	fi
