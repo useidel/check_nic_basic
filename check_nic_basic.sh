@@ -44,17 +44,17 @@ check_nic()
 {
 ifconfig $1 > /dev/null 2>&1
 if [ "$?" -ne 0 ]; then
-	echo "Interface $1 not found"
+	echo "CRITICAL - Interface $1 not found"
         EXITSTATUS=$STATE_CRITICAL
         exit $EXITSTATUS
 else
 	ifconfig $1 | grep -v inet6 | grep inet > /dev/null 2>&1
 	if [ "$?" -ne 0 ]; then
-		echo "Interface $1 has no IP address"
+		echo "WARNING - Interface $1 has no IP address"
 		EXITSTATUS=$STATE_WARNING
 		exit $EXITSTATUS
 	else
-		echo "Interface $1 has an IP address"
+		echo "OK - Interface $1 is avaiable and has an IP address"
 		EXITSTATUS=$STATE_OK
 		exit $EXITSTATUS
 	fi
