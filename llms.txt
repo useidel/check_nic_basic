@@ -1,0 +1,26 @@
+# check_nic_basic
+
+> A Nagios/Icinga plugin for basic network-interface checks.
+
+The shell plugin checks whether a specified NIC is present in the interface list and whether it has an IPv4 address assigned.
+
+## Repository overview
+
+- [Source repository](https://github.com/useidel/check_nic_basic): Canonical GitHub repository, including source files, issues, history, and repository metadata.
+- [README](https://raw.githubusercontent.com/useidel/check_nic_basic/HEAD/README.md): Primary project documentation and usage notes.
+
+## Topics
+
+- Nagios
+- Icinga
+- Network interface
+- Shell
+
+## Additional resources
+
+- [Main plugin script](https://raw.githubusercontent.com/useidel/check_nic_basic/HEAD/check_nic_basic.sh)
+
+## Optional
+
+- [Repository activity](https://github.com/useidel/check_nic_basic/commits): Commit history for implementation changes and maintenance context.
+- [Issues](https://github.com/useidel/check_nic_basic/issues): Questions, bug reports, and project discussions when enabled.
